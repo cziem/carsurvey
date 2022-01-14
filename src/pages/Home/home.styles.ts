@@ -10,6 +10,7 @@ export const Wrapper = styled(Box)`
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    overflow-y: hidden;
   }
 
   .name-wrap {
