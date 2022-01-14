@@ -2,7 +2,7 @@ import { Box } from "@mui/material"
 import styled from "styled-components"
 
 export const Wrapper = styled(Box)`
-  background-color: #ddd;
+  background-color: transparent;
 
   .container {
     height: 100vh;
@@ -17,8 +17,21 @@ export const Wrapper = styled(Box)`
     width: 70%;
     margin: 4em auto;
 
+    input {
+      color: #f1f1f1;
+    }
+
     label {
+      color: #f1f1f1;
       padding-left: 0.5em;
+    }
+
+    .name-field > div::before {
+      border-bottom: 1px solid rgba(256, 256, 256, 0.5);
+    }
+
+    .name-field > div::after {
+      border-bottom: 2px solid #f1f1f1;
     }
   }
 

@@ -1,5 +1,6 @@
 import { Button, Container, Typography, TextField, Slide } from "@mui/material"
 import React from "react"
+import ImageBackground from "../../components/ImageBackground"
 import { Wrapper } from "./home.styles"
 
 const Home = () => {
@@ -8,11 +9,17 @@ const Home = () => {
 
   return (
     <Wrapper sx={{ height: "100vh" }}>
+      <ImageBackground />
       <Container maxWidth="lg" className="container" ref={containerRef}>
-        <Typography variant="h1" textAlign={"center"}>
+        <Typography
+          variant="h1"
+          textAlign={"center"}
+          color="#f1f1f1"
+          sx={{ letterSpacing: "-5px", fontWeight: "600" }}
+        >
           Welcome To Car Survey
         </Typography>
-        <Typography variant="h6" textAlign={"center"} color="#616161">
+        <Typography variant="h6" textAlign={"center"} color="#d1d1d1">
           We have a few questions for you, please provide your name to get
           started.
         </Typography>
@@ -20,8 +27,9 @@ const Home = () => {
         <div className="name-wrap">
           <TextField
             fullWidth
-            variant="standard"
             label="John Doe"
+            variant="standard"
+            className="name-field"
             onFocus={() => setChecked(true)}
             onBlur={() => setChecked(false)}
           />
