@@ -1,9 +1,11 @@
 import { Button, Container, Typography, TextField, Slide } from "@mui/material"
 import React from "react"
+import { useNavigate } from "react-router-dom"
 import ImageBackground from "../../components/ImageBackground"
 import { Wrapper } from "./home.styles"
 
 const Home = () => {
+  const navigate = useNavigate()
   const [checked, setChecked] = React.useState(false)
   const containerRef = React.useRef(null)
 
@@ -36,7 +38,11 @@ const Home = () => {
         </div>
 
         <Slide direction="up" in={checked} container={containerRef.current}>
-          <Button variant="contained" size="large">
+          <Button
+            variant="contained"
+            size="large"
+            onClick={() => navigate("/survey")}
+          >
             Start
           </Button>
         </Slide>

@@ -20,4 +20,18 @@ export const Wrapper = styled(Box)`
     height: 100%;
     object-fit: cover;
   }
+
+  .fade {
+    animation: fade 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 `
