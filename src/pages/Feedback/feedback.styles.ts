@@ -11,5 +11,11 @@ export const Wrapper = styled(Box)`
     flex-direction: column;
     justify-content: center;
     overflow-y: hidden;
+
+    @media (max-width: 600px) {
+      h3 {
+        font-size: 2rem;
+      }
+    }
   }
 `

@@ -12,6 +12,12 @@ export const Wrapper = styled(Box)`
     flex-direction: column;
     justify-content: center;
     /* overflow-y: auto; */
+
+    @media (max-width: 600px) {
+      .question-title {
+        font-size: 1.85rem;
+      }
+    }
   }
 
   .input > div::before {

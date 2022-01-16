@@ -124,7 +124,12 @@ const Question: React.FC<IQuestion> = ({
 
   return (
     <React.Fragment>
-      <Typography variant="h2" color="#f1f1f1" mb={4}>
+      <Typography
+        className="question-title"
+        variant="h2"
+        color="#f1f1f1"
+        mb={4}
+      >
         {question.question}
       </Typography>
 

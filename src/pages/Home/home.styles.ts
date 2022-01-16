@@ -11,6 +11,14 @@ export const Wrapper = styled(Box)`
     flex-direction: column;
     justify-content: center;
     overflow-y: hidden;
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3rem;
+        letter-spacing: 1px;
+        margin-bottom: 1em;
+      }
+    }
   }
 
   .name-wrap {
