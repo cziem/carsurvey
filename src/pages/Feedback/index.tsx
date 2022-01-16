@@ -1,17 +1,30 @@
 import { Box, Button, Container, Typography } from "@mui/material"
 import React from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { Wrapper } from "./feedback.styles"
 
+interface ILocation {
+  pathname: string
+  state: any
+}
 const Feedback = () => {
+  const location = useLocation() as ILocation
   const navigate = useNavigate()
 
   return (
     <Wrapper>
       <Container maxWidth="lg" className="container">
-        <Typography variant="h3" textAlign={"center"} color="#f1f1f1">
-          Thank you for participating in Car Survey
-        </Typography>
+        {location?.state?.reason === "beginner" ? (
+          <Typography variant="h3" textAlign={"center"} color="#f1f1f1">
+            We are targeting more experienced clients, thank you for your
+            interest
+          </Typography>
+        ) : (
+          <Typography variant="h3" textAlign={"center"} color="#f1f1f1">
+            Thank you for participating in Car Survey
+          </Typography>
+        )}
+
         <Typography
           variant="body1"
           textAlign={"center"}

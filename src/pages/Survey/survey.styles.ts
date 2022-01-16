@@ -5,12 +5,13 @@ export const Wrapper = styled(Box)`
   background-color: #07131c;
 
   .container {
-    height: 100vh;
+    min-height: 100vh;
+    /* height: inherit; */
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    overflow-y: hidden;
+    /* overflow-y: auto; */
   }
 
   .input > div::before {
@@ -41,6 +42,6 @@ export const Wrapper = styled(Box)`
   }
 
   button {
-    margin-top: 2em;
+    margin-top: 3.5em;
   }
 `
