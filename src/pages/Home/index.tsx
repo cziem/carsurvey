@@ -6,7 +6,7 @@ import { Wrapper } from "./home.styles"
 
 const Home = () => {
   const navigate = useNavigate()
-  const [checked, setChecked] = React.useState(false)
+  const [checked, setChecked] = React.useState(true)
   const containerRef = React.useRef(null)
 
   return (
@@ -21,12 +21,17 @@ const Home = () => {
         >
           Welcome To Car Survey
         </Typography>
-        <Typography variant="h6" textAlign={"center"} color="#d1d1d1">
+        <Typography
+          variant="h6"
+          textAlign={"center"}
+          color="#d1d1d1"
+          sx={{ marginBottom: "3em" }}
+        >
           We have a few questions for you, please provide your name to get
           started.
         </Typography>
 
-        <div className="name-wrap">
+        {/* <div className="name-wrap">
           <TextField
             fullWidth
             label="John Doe"
@@ -35,9 +40,14 @@ const Home = () => {
             onFocus={() => setChecked(true)}
             onBlur={() => setChecked(false)}
           />
-        </div>
+        </div> */}
 
-        <Slide direction="up" in={checked} container={containerRef.current}>
+        <Slide
+          direction="up"
+          in={checked}
+          container={containerRef.current}
+          timeout={1000}
+        >
           <Button
             variant="contained"
             size="large"
