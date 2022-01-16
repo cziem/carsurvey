@@ -12,19 +12,31 @@ code {
     monospace;
 }
 
-body::-webkit-scrollbar {
-  width: 0.15em;
-  background-color: #07131c;
+/* Firefox */
+* {
+  scrollbar-width: none; /* none | auto  */
+  scrollbar-color: #07131c transparent;
 }
 
-body::-webkit-scrollbar-track {
-  border-radius: 1em;
-  background-color: #07131c;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+/* The first applies to the thumb of the scrollbar, the second to the track. */
+/* Firefox */
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 0.15em; /* vertical scrollbar */
+  height: 0.15em; /* horizontal scrollbar */
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: #07131c;
-  outline: 1px solid #07131c;
-  border-radius: 1em;
+*::-webkit-scrollbar-track {
+  background: #07131c;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #07131c;
+  border-radius: 14px;
+  border: calc(14px / 4) solid #07131c;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #07131c;
 }

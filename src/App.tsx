@@ -4,6 +4,7 @@ import AdminDashboard from "./pages/AdminDashboard"
 import Login from "./pages/Auth/Login"
 import Feedback from "./pages/Feedback"
 import Home from "./pages/Home"
+import NotFound from "./pages/NotFound"
 import Survey from "./pages/Survey"
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="thank-you" element={<Feedback />} />
         <Route path="overview" element={<AdminDashboard />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

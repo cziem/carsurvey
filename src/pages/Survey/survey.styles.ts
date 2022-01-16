@@ -6,12 +6,10 @@ export const Wrapper = styled(Box)`
 
   .container {
     min-height: 100vh;
-    /* height: inherit; */
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    /* overflow-y: auto; */
 
     @media (max-width: 600px) {
       .question-title {
