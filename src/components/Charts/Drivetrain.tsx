@@ -12,20 +12,79 @@ import {
 import ChildCareIcon from "@mui/icons-material/ChildCare"
 import GppBadIcon from "@mui/icons-material/GppBad"
 import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns"
+import React from "react"
+import { TDBPayload } from "../../types/type"
+import { getSurveys } from "../../utils/database"
 
 Chart.register(ArcElement)
 
 interface IProps {
   [x: string]: any
 }
+interface IChart {
+  totalFWD: string | number
+  totalRWD: string | number
+  totalDontKnow: string | number
+}
+
 const Drivetrain = (props: IProps) => {
+  const [survey, setSurvey] = React.useState<TDBPayload[]>([])
   const theme = useTheme()
+
+  React.useEffect(() => {
+    const data = getSurveys()
+    setSurvey(data)
+  }, [])
+
+  const chartData = React.useMemo(() => {
+    let totalFWD = 0
+    let totalRWD = 0
+    let totalDontKnow = 0
+    let totalTargeted = survey.filter((item) =>
+      item.beginner?.toLowerCase().includes("no")
+    ).length
+    let percentages: IChart = {
+      totalFWD: 0,
+      totalRWD: 0,
+      totalDontKnow: 0,
+    }
+
+    survey.forEach((item) => {
+      if (
+        item.beginner?.toLowerCase().includes("no") &&
+        item.drivetrain?.toLowerCase().includes("fwd")
+      ) {
+        totalFWD += 1
+      } else if (
+        item.beginner?.toLowerCase().includes("no") &&
+        item.drivetrain?.toLowerCase().includes("rwd")
+      ) {
+        totalRWD += 1
+      } else if (
+        item.beginner?.toLowerCase().includes("no") &&
+        item.drivetrain?.toLowerCase().includes("know")
+      ) {
+        totalDontKnow += 1
+      }
+    })
+
+    percentages.totalFWD = ((totalFWD / totalTargeted) * 100).toFixed(0)
+    percentages.totalRWD = ((totalRWD / totalTargeted) * 100).toFixed(0)
+    percentages.totalDontKnow = ((totalDontKnow / totalTargeted) * 100).toFixed(
+      0
+    )
+
+    return {
+      dataList: [totalFWD, totalRWD, totalDontKnow],
+      percentages,
+    }
+  }, [survey])
 
   const data = {
     datasets: [
       {
-        data: [8, 15, 22],
-        backgroundColor: ["#2ed7ff", "#1b8cb9", "#b9481b"],
+        data: chartData.dataList,
+        backgroundColor: ["#2ed7ff", "#2466f3", "#fc9d45"],
         borderWidth: 5,
         borderColor: "#FFFFFF",
         hoverBorderColor: "#FFFFFF",
@@ -61,21 +120,21 @@ const Drivetrain = (props: IProps) => {
   const respondentGroups = [
     {
       title: "FWD",
-      value: 8,
+      value: chartData.percentages.totalFWD,
       icon: ChildCareIcon,
       color: "#2ed7ff",
     },
     {
       title: "RWD",
-      value: 15,
+      value: chartData.percentages.totalRWD,
       icon: GppBadIcon,
-      color: "#b9481b",
+      color: "#2466f3",
     },
     {
       title: "I don't Know",
-      value: 22,
+      value: chartData.percentages.totalDontKnow,
       icon: FollowTheSignsIcon,
-      color: "#1b8cb9",
+      color: "#fc9d45",
     },
   ]
 

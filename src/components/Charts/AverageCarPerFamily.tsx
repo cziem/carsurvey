@@ -9,8 +9,12 @@ import {
 } from "@mui/material"
 import React from "react"
 import { Pie } from "react-chartjs-2"
-import { TDBPayload } from "../../types/type"
+import { TBrandModel, TDBPayload } from "../../types/type"
 import { getSurveys } from "../../utils/database"
+import _ from "lodash"
+import { Chart, Legend } from "chart.js"
+
+Chart.register(Legend)
 
 interface IProps {
   [x: string]: any
@@ -38,17 +42,41 @@ const AverageCarPerFamily = (props: IProps) => {
     }, 0)
   }
 
+  const chartData = React.useMemo(() => {
+    let res = survey
+      .filter((item) => Array.isArray(item.carList))
+      .map((item) => item.carList)
+
+    let result = res.flat()
+    let brands = Array.from(new Set(result.map((item) => item?.brand)))
+    let dataList = Object.values(_.countBy(result, "brand"))
+
+    return {
+      brands,
+      dataList,
+    }
+  }, [survey])
+
   const data = {
     datasets: [
       {
-        data: [32, 12, 8, 16],
-        backgroundColor: ["#1bb9ab", "#8c1bb9", "#b6b91b", "#f786c8"],
+        data: chartData.dataList,
+        backgroundColor: [
+          "#1bb9ab",
+          "#8c1bb9",
+          "#b6b91b",
+          "#f786c8",
+          "#42ebddb5",
+          "#af40dbac",
+          "#cfaa64",
+          "#403df39b",
+        ],
         borderWidth: 5,
         borderColor: "#FFFFFF",
         hoverBorderColor: "#e6e6e6",
       },
     ],
-    labels: ["BMW", "Toyota", "Audi", "Mercedes"],
+    labels: chartData.brands,
   }
 
   const options = {
@@ -57,7 +85,7 @@ const AverageCarPerFamily = (props: IProps) => {
       cutoutPercentage: 80,
       layout: { padding: 0 },
       legend: {
-        display: false,
+        display: true,
       },
       maintainAspectRatio: true,
       responsive: true,

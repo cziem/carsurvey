@@ -10,20 +10,70 @@ import {
   useTheme,
 } from "@mui/material"
 import { ArcElement, Chart, Tooltip } from "chart.js"
+import React from "react"
 import { Pie } from "react-chartjs-2"
+import { TDBPayload } from "../../types/type"
+import { getSurveys } from "../../utils/database"
 
 Chart.register(ArcElement, Tooltip)
 
 interface IProps {
   [x: string]: any
 }
+interface IChart {
+  totalCare: string | number
+  totalDontCare: string | number
+}
+
 const FuelEmission = (props: IProps) => {
+  const [survey, setSurvey] = React.useState<TDBPayload[]>([])
   const theme = useTheme()
+
+  React.useEffect(() => {
+    const data = getSurveys()
+    setSurvey(data)
+  }, [])
+
+  const chartData = React.useMemo(() => {
+    let totalCare = 0
+    let totalDontCare = 0
+    let totalTargeted = survey.filter((item) =>
+      item.beginner?.toLowerCase().includes("no")
+    ).length
+    let percentages: IChart = {
+      totalCare: 0,
+      totalDontCare: 0,
+    }
+
+    survey.forEach((item) => {
+      if (
+        item.beginner?.toLowerCase().includes("no") &&
+        item.emission?.toLowerCase().includes("yes")
+      ) {
+        totalCare += 1
+      } else if (
+        item.beginner?.toLowerCase().includes("no") &&
+        item.emission?.toLowerCase().includes("no")
+      ) {
+        totalDontCare += 1
+      }
+    })
+
+    percentages.totalCare = ((totalCare / totalTargeted) * 100).toFixed(0)
+    percentages.totalDontCare = ((totalDontCare / totalTargeted) * 100).toFixed(
+      0
+    )
+
+    return {
+      dataList: [totalCare, totalDontCare],
+      percentages,
+    }
+  }, [survey])
 
   const data = {
     datasets: [
       {
-        data: [32, 12],
+        data: chartData.dataList,
         backgroundColor: ["#1bb9ab", "#8c1bb9"],
         borderWidth: 5,
         borderColor: "#FFFFFF",
@@ -59,14 +109,14 @@ const FuelEmission = (props: IProps) => {
 
   const respondentGroups = [
     {
-      title: "Total Targetables",
-      value: 32,
+      title: "Cares",
+      value: chartData.percentages.totalCare,
       icon: AdminPanelSettingsIcon,
       color: "#2ed7ff",
     },
     {
-      title: "Care about emission",
-      value: 12,
+      title: "Don't care",
+      value: chartData.percentages.totalDontCare,
       icon: FlareIcon,
       color: "#8c1bb9",
     },

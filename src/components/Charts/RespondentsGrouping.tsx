@@ -1,5 +1,7 @@
-import { Doughnut } from "react-chartjs-2"
-import { Chart, ArcElement } from "chart.js"
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings"
+import ChildCareIcon from "@mui/icons-material/ChildCare"
+import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns"
+import GppBadIcon from "@mui/icons-material/GppBad"
 import {
   Box,
   Card,
@@ -9,23 +11,86 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
-import ChildCareIcon from "@mui/icons-material/ChildCare"
-import GppBadIcon from "@mui/icons-material/GppBad"
-import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns"
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings"
+import { ArcElement, Chart } from "chart.js"
+import React from "react"
+import { Doughnut } from "react-chartjs-2"
+import { TDBPayload } from "../../types/type"
+import { getSurveys } from "../../utils/database"
 
 Chart.register(ArcElement)
 
 interface IProps {
   [x: string]: any
 }
+interface IChart {
+  totalAdolescent: string | number
+  totalUnlicensed: string | number
+  totalBeginner: string | number
+  totalTargeted: string | number
+}
 const RespondentsGrouping = (props: IProps) => {
+  const [survey, setSurvey] = React.useState<TDBPayload[]>([])
   const theme = useTheme()
+
+  React.useEffect(() => {
+    const data = getSurveys()
+    setSurvey(data)
+  }, [])
+
+  const chartData = React.useMemo(() => {
+    let totalAdolescent = 0
+    let totalUnlicensed = 0
+    let totalBeginner = 0
+    let totalTargeted = 0
+    let percentages: IChart = {
+      totalAdolescent: 0,
+      totalUnlicensed: 0,
+      totalBeginner: 0,
+      totalTargeted: 0,
+    }
+
+    survey.forEach((item) => {
+      if (+item.age < 18) {
+        totalAdolescent += 1
+      } else if (item.licensed?.toLowerCase().includes("no")) {
+        totalUnlicensed += 1
+      } else if (item.beginner?.toLowerCase().includes("yes")) {
+        totalBeginner += 1
+      } else if (item.beginner?.toLowerCase().includes("no")) {
+        totalTargeted += 1
+      }
+    })
+
+    percentages.totalAdolescent = (
+      (totalAdolescent / survey.length) *
+      100
+    ).toFixed(0)
+    percentages.totalUnlicensed = (
+      (totalUnlicensed / survey.length) *
+      100
+    ).toFixed(0)
+    percentages.totalBeginner = ((totalBeginner / survey.length) * 100).toFixed(
+      0
+    )
+    percentages.totalTargeted = ((totalTargeted / survey.length) * 100).toFixed(
+      0
+    )
+
+    return {
+      dataList: [
+        totalAdolescent,
+        totalUnlicensed,
+        totalBeginner,
+        totalTargeted,
+      ],
+      percentages,
+    }
+  }, [survey])
 
   const data = {
     datasets: [
       {
-        data: [8, 15, 22, 32],
+        data: chartData.dataList,
         backgroundColor: ["#2ed7ff", "#b9481b", "#1b8cb9", "#1bb9ab"],
         borderWidth: 8,
         borderColor: "#FFFFFF",
@@ -62,25 +127,25 @@ const RespondentsGrouping = (props: IProps) => {
   const respondentGroups = [
     {
       title: "Adolescent",
-      value: 8,
+      value: chartData.percentages.totalAdolescent,
       icon: ChildCareIcon,
       color: "#2ed7ff",
     },
     {
       title: "Unlicensed",
-      value: 15,
+      value: chartData.percentages.totalUnlicensed,
       icon: GppBadIcon,
       color: "#b9481b",
     },
     {
       title: "Beginner",
-      value: 22,
+      value: chartData.percentages.totalBeginner,
       icon: FollowTheSignsIcon,
       color: "#1b8cb9",
     },
     {
       title: "Targeted",
-      value: 32,
+      value: chartData.percentages.totalTargeted,
       icon: AdminPanelSettingsIcon,
       color: "#1bb9ab",
     },
