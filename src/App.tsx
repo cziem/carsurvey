@@ -1,5 +1,6 @@
 import React from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import RequireAuth from "./components/PrivateRoute"
 import AdminDashboard from "./pages/AdminDashboard"
 import Login from "./pages/Auth/Login"
 import Feedback from "./pages/Feedback"
@@ -15,7 +16,14 @@ const App = () => {
         <Route path="survey" element={<Survey />} />
         <Route path="login" element={<Login />} />
         <Route path="thank-you" element={<Feedback />} />
-        <Route path="overview" element={<AdminDashboard />} />
+        <Route
+          path="overview"
+          element={
+            <RequireAuth>
+              <AdminDashboard />
+            </RequireAuth>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -11,10 +11,19 @@ import {
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import FacebookIcon from "@mui/icons-material/Facebook"
 import GoogleIcon from "@mui/icons-material/Google"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
+
+interface ILocation {
+  pathname: string
+  state: any
+}
 
 const Login = () => {
   const navigate = useNavigate()
+  const location = useLocation() as ILocation
+
+  let from = location.state?.from?.pathname || "/overview"
+
   const formik = useFormik({
     initialValues: {
       email: "admin@carsurvey.io",
@@ -27,8 +36,9 @@ const Login = () => {
         .required("Email is required"),
       password: Yup.string().max(255).required("Password is required"),
     }),
-    onSubmit: () => {
-      navigate("/overview")
+    onSubmit: (values) => {
+      localStorage.setItem("car-survey-auth", JSON.stringify(values))
+      navigate(from, { replace: true })
     },
   })
 
