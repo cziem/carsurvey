@@ -12,7 +12,6 @@ import {
 import ChildCareIcon from "@mui/icons-material/ChildCare"
 import GppBadIcon from "@mui/icons-material/GppBad"
 import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns"
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings"
 
 Chart.register(ArcElement)
 
