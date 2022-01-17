@@ -9,9 +9,9 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
-import ChildCareIcon from "@mui/icons-material/ChildCare"
-import GppBadIcon from "@mui/icons-material/GppBad"
-import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns"
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar"
+import DirectionsBusIcon from "@mui/icons-material/DirectionsBus"
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark"
 import React from "react"
 import { TDBPayload } from "../../types/type"
 import { getSurveys } from "../../utils/database"
@@ -121,19 +121,19 @@ const Drivetrain = (props: IProps) => {
     {
       title: "FWD",
       value: chartData.percentages.totalFWD,
-      icon: ChildCareIcon,
+      icon: DirectionsCarIcon,
       color: "#2ed7ff",
     },
     {
       title: "RWD",
       value: chartData.percentages.totalRWD,
-      icon: GppBadIcon,
+      icon: DirectionsBusIcon,
       color: "#2466f3",
     },
     {
       title: "I don't Know",
       value: chartData.percentages.totalDontKnow,
-      icon: FollowTheSignsIcon,
+      icon: QuestionMarkIcon,
       color: "#fc9d45",
     },
   ]

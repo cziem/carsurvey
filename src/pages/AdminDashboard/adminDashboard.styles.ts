@@ -123,6 +123,13 @@ export const Wrapper = styled(Box)`
   }
 
   /* Styles for charts */
+  .legend {
+    flex-wrap: wrap;
+
+    h4 {
+      font-size: 1.5em;
+    }
+  }
   @media (max-width: 600px) {
     .legend {
     }

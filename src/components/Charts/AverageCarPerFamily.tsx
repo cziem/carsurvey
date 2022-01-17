@@ -7,12 +7,12 @@ import {
   Typography,
   useTheme,
 } from "@mui/material"
+import { Chart, Legend } from "chart.js"
+import _ from "lodash"
 import React from "react"
 import { Pie } from "react-chartjs-2"
-import { TBrandModel, TDBPayload } from "../../types/type"
+import { TDBPayload } from "../../types/type"
 import { getSurveys } from "../../utils/database"
-import _ from "lodash"
-import { Chart, Legend } from "chart.js"
 
 Chart.register(Legend)
 
