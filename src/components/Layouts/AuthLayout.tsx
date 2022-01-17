@@ -17,6 +17,9 @@ import ListItemIcon from "@mui/material/ListItemIcon"
 import ListItemText from "@mui/material/ListItemText"
 import InboxIcon from "@mui/icons-material/MoveToInbox"
 import MailIcon from "@mui/icons-material/Mail"
+import { Icon } from "@mui/material"
+import { Logout } from "@mui/icons-material"
+import { useNavigate } from "react-router-dom"
 
 const drawerWidth = 240
 
@@ -95,6 +98,7 @@ interface IProps {
 }
 const AuthLayout: React.FC<IProps> = ({ children }) => {
   const theme = useTheme()
+  const navigate = useNavigate()
   const [open, setOpen] = React.useState(false)
 
   const handleDrawerOpen = () => {
@@ -103,6 +107,11 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
 
   const handleDrawerClose = () => {
     setOpen(false)
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem("car-survey-auth")
+    navigate("/", { replace: true })
   }
 
   return (
@@ -125,6 +134,7 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
           <Typography variant="h6" noWrap component="div">
             Car Survey Reporting Dashboard
           </Typography>
+          <Toolbar />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} sx={{ bgcolor: "#07131c" }}>
@@ -149,6 +159,13 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
           ))}
         </List>
         <Divider />
+        <List>
+          <ListItem button>
+            <ListItemIcon>
+              <Logout onClick={handleLogout} />
+            </ListItemIcon>
+          </ListItem>
+        </List>
       </Drawer>
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
