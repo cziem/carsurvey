@@ -24,8 +24,16 @@ const AverageCarPerFamily = (props: IProps) => {
   const [survey, setSurvey] = React.useState<TDBPayload[]>([])
 
   React.useEffect(() => {
-    const data = getSurveys()
-    setSurvey(data)
+    const init = () => {
+      setSurvey(getSurveys())
+    }
+
+    init()
+    window.addEventListener("storage", init)
+
+    return () => {
+      window.removeEventListener("storage", init)
+    }
   }, [])
 
   const totalTargeted = () =>

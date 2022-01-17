@@ -17,8 +17,17 @@ const AdminDashboard = () => {
   const [survey, setSurvey] = React.useState<TDBPayload[]>([])
 
   React.useEffect(() => {
-    const data = getSurveys()
-    setSurvey(data)
+    const init = () => {
+      const data = getSurveys()
+      setSurvey(data)
+    }
+
+    init()
+    window.addEventListener("storage", init)
+
+    return () => {
+      window.removeEventListener("storage", init)
+    }
   }, [])
 
   // Get OverviewSummary
@@ -46,12 +55,7 @@ const AdminDashboard = () => {
   return (
     <AuthLayout>
       <Wrapper>
-        <Grid
-          container
-          className="overview summary"
-          rowSpacing={2}
-          // columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-        >
+        <Grid container className="overview summary" rowSpacing={2}>
           <Grid item className="adolescent" xl={2} lg={3} sm={5} xs={12}>
             <div className="info">
               <Typography variant="h5">Adolescent</Typography>

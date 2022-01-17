@@ -34,8 +34,16 @@ const RespondentsGrouping = (props: IProps) => {
   const theme = useTheme()
 
   React.useEffect(() => {
-    const data = getSurveys()
-    setSurvey(data)
+    const init = () => {
+      setSurvey(getSurveys())
+    }
+
+    init()
+    window.addEventListener("storage", init)
+
+    return () => {
+      window.removeEventListener("storage", init)
+    }
   }, [])
 
   const chartData = React.useMemo(() => {
