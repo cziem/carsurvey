@@ -5,13 +5,7 @@ import React from "react"
 import { useNavigate } from "react-router-dom"
 import Question from "../../components/Question"
 import { questionsList } from "../../shared/data"
-import {
-  IResponse,
-  IValidate,
-  TBrandModel,
-  TDir,
-  TQuestion,
-} from "../../types/type"
+import { IResponse, TDir, TQuestion } from "../../types/type"
 import { saveToDB } from "../../utils/database"
 import { validateResponse } from "../../utils/response"
 import { Wrapper } from "./survey.styles"
