@@ -14,8 +14,6 @@ export type TDir = "up" | "right" | "left" | "down" | undefined
 
 export interface IResponse {
   age: string
-  // brand: string
-  // model: string
   gender: string
   carSize: string
   licensed: string
@@ -34,4 +32,15 @@ export interface IValidate {
 export type TBrandModel = {
   brand: string
   model: string
+}
+
+export type TDBPayload = {
+  age: string
+  gender?: string
+  carSize?: string
+  licensed?: string
+  beginner?: string
+  emission?: string
+  drivetrain?: string
+  carList?: TBrandModel[]
 }

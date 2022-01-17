@@ -9,12 +9,34 @@ import {
 } from "@mui/material"
 import React from "react"
 import { Pie } from "react-chartjs-2"
+import { TDBPayload } from "../../types/type"
+import { getSurveys } from "../../utils/database"
 
 interface IProps {
   [x: string]: any
 }
 const AverageCarPerFamily = (props: IProps) => {
   const theme = useTheme()
+  const [survey, setSurvey] = React.useState<TDBPayload[]>([])
+
+  React.useEffect(() => {
+    const data = getSurveys()
+    setSurvey(data)
+  }, [])
+
+  const totalTargeted = () =>
+    survey.filter((item) => item.beginner?.toLowerCase().includes("no")).length
+
+  const averageCarPerFamily = () => {
+    let data = survey.filter((item) =>
+      item.beginner?.toLowerCase().includes("no")
+    )
+    return data.reduce((runningTotal, item) => {
+      let total = runningTotal + Number(item?.carSize)
+
+      return Math.round(total / data.length)
+    }, 0)
+  }
 
   const data = {
     datasets: [
@@ -65,10 +87,13 @@ const AverageCarPerFamily = (props: IProps) => {
           }}
         >
           <Typography variant="body1">
-            Total Targeted: <strong>32</strong>
+            Total Survey: <strong>{survey.length}</strong>
           </Typography>
           <Typography variant="body1">
-            Average car per family: <strong>4</strong>
+            Total Targeted: <strong>{totalTargeted()}</strong>
+          </Typography>
+          <Typography variant="body1">
+            Average car per family: <strong>{averageCarPerFamily()}</strong>
           </Typography>
         </Box>
       </CardContent>

@@ -10,8 +10,39 @@ import RespondentsGrouping from "../../components/Charts/RespondentsGrouping"
 import FuelEmission from "../../components/Charts/FuelEmission"
 import Drivetrain from "../../components/Charts/Drivetrain"
 import AverageCarPerFamily from "../../components/Charts/AverageCarPerFamily"
+import { getSurveys } from "../../utils/database"
+import { TDBPayload } from "../../types/type"
 
 const AdminDashboard = () => {
+  const [survey, setSurvey] = React.useState<TDBPayload[]>([])
+
+  React.useEffect(() => {
+    const data = getSurveys()
+    setSurvey(data)
+  }, [])
+
+  // Get OverviewSummary
+  const getOverviewSummary = (type: string) => {
+    if (type === "adolescent") {
+      return survey.filter((item) => +item.age < 18).length
+    }
+    if (type === "unlicensed") {
+      return survey.filter((item) =>
+        item.licensed?.toLowerCase().includes("no")
+      ).length
+    }
+    if (type === "beginner") {
+      return survey.filter((item) =>
+        item.beginner?.toLowerCase().includes("yes")
+      ).length
+    }
+    if (type === "targeted") {
+      return survey.filter((item) =>
+        item.beginner?.toLowerCase().includes("no")
+      ).length
+    }
+  }
+
   return (
     <AuthLayout>
       <Wrapper>
@@ -24,7 +55,9 @@ const AdminDashboard = () => {
               </Icon>
             </div>
             <div className="total">
-              <Typography variant="h2">12</Typography>
+              <Typography variant="h2">
+                {getOverviewSummary("adolescent")}
+              </Typography>
             </div>
           </Grid>
           <Grid item className="unlicensed">
@@ -35,7 +68,9 @@ const AdminDashboard = () => {
               </Icon>
             </div>
             <div className="total">
-              <Typography variant="h2">23</Typography>
+              <Typography variant="h2">
+                {getOverviewSummary("unlicensed")}
+              </Typography>
             </div>
           </Grid>
           <Grid item className="first-timer">
@@ -46,18 +81,22 @@ const AdminDashboard = () => {
               </Icon>
             </div>
             <div className="total">
-              <Typography variant="h2">5</Typography>
+              <Typography variant="h2">
+                {getOverviewSummary("beginner")}
+              </Typography>
             </div>
           </Grid>
           <Grid item className="target">
             <div className="info">
-              <Typography variant="h5">Targetables</Typography>
+              <Typography variant="h5">Targeted</Typography>
               <Icon className="icon">
                 <AdminPanelSettingsIcon />
               </Icon>
             </div>
             <div className="total">
-              <Typography variant="h2">37</Typography>
+              <Typography variant="h2">
+                {getOverviewSummary("targeted")}
+              </Typography>
             </div>
           </Grid>
         </Grid>

@@ -1,4 +1,6 @@
-export const saveToDB = (payload: any) => {
+import { TDBPayload } from "./../types/type.d"
+
+export const saveToDB = (payload: TDBPayload) => {
   let responseList: any = localStorage.getItem("survey") || '""'
   responseList = JSON.parse(responseList)
 
@@ -12,4 +14,8 @@ export const saveToDB = (payload: any) => {
 
   // Save to DB
   localStorage.setItem("survey", JSON.stringify(responseList))
+}
+
+export const getSurveys = (): TDBPayload[] => {
+  return JSON.parse(localStorage.getItem("survey") || '""') || []
 }
