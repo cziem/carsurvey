@@ -15,6 +15,7 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark"
 import React from "react"
 import { TDBPayload } from "../../types/type"
 import { getSurveys } from "../../utils/database"
+import { isNan } from "../../utils/helper"
 
 Chart.register(ArcElement)
 
@@ -68,10 +69,10 @@ const Drivetrain = (props: IProps) => {
       }
     })
 
-    percentages.totalFWD = ((totalFWD / totalTargeted) * 100).toFixed(0)
-    percentages.totalRWD = ((totalRWD / totalTargeted) * 100).toFixed(0)
-    percentages.totalDontKnow = ((totalDontKnow / totalTargeted) * 100).toFixed(
-      0
+    percentages.totalFWD = isNan(((totalFWD / totalTargeted) * 100).toFixed(0))
+    percentages.totalRWD = isNan(((totalRWD / totalTargeted) * 100).toFixed(0))
+    percentages.totalDontKnow = isNan(
+      ((totalDontKnow / totalTargeted) * 100).toFixed(0)
     )
 
     return {

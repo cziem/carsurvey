@@ -16,6 +16,7 @@ import React from "react"
 import { Doughnut } from "react-chartjs-2"
 import { TDBPayload } from "../../types/type"
 import { getSurveys } from "../../utils/database"
+import { isNan } from "../../utils/helper"
 
 Chart.register(ArcElement)
 
@@ -61,19 +62,17 @@ const RespondentsGrouping = (props: IProps) => {
       }
     })
 
-    percentages.totalAdolescent = (
-      (totalAdolescent / survey.length) *
-      100
-    ).toFixed(0)
-    percentages.totalUnlicensed = (
-      (totalUnlicensed / survey.length) *
-      100
-    ).toFixed(0)
-    percentages.totalBeginner = ((totalBeginner / survey.length) * 100).toFixed(
-      0
+    percentages.totalAdolescent = isNan(
+      ((totalAdolescent / survey.length) * 100).toFixed(0)
     )
-    percentages.totalTargeted = ((totalTargeted / survey.length) * 100).toFixed(
-      0
+    percentages.totalUnlicensed = isNan(
+      ((totalUnlicensed / survey.length) * 100).toFixed(0)
+    )
+    percentages.totalBeginner = isNan(
+      ((totalBeginner / survey.length) * 100).toFixed(0)
+    )
+    percentages.totalTargeted = isNan(
+      ((totalTargeted / survey.length) * 100).toFixed(0)
     )
 
     return {

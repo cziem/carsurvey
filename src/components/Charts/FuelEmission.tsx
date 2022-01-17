@@ -14,6 +14,7 @@ import React from "react"
 import { Pie } from "react-chartjs-2"
 import { TDBPayload } from "../../types/type"
 import { getSurveys } from "../../utils/database"
+import { isNan } from "../../utils/helper"
 
 Chart.register(ArcElement, Tooltip)
 
@@ -59,9 +60,11 @@ const FuelEmission = (props: IProps) => {
       }
     })
 
-    percentages.totalCare = ((totalCare / totalTargeted) * 100).toFixed(0)
-    percentages.totalDontCare = ((totalDontCare / totalTargeted) * 100).toFixed(
-      0
+    percentages.totalCare = isNan(
+      ((totalCare / totalTargeted) * 100).toFixed(0)
+    )
+    percentages.totalDontCare = isNan(
+      ((totalDontCare / totalTargeted) * 100).toFixed(0)
     )
 
     return {
