@@ -69,6 +69,7 @@ const Survey = () => {
   }
 
   const handlePrev = () => {
+    setError("")
     setDir("down")
     setActive((prev) => prev - 1)
   }
@@ -93,11 +94,12 @@ const Survey = () => {
   const handleSubmit = () => {
     // validate brand and model for carSize
     const validate = validateResponse(response, "brand-model")
-    console.log(validate)
 
     if (validate?.canProceed) {
       // Save response
       saveToDB(validate.payload)
+    } else if (validate?.error) {
+      return setError(validate.error)
     }
 
     // clear response and Redirect to Feedback

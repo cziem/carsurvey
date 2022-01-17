@@ -80,6 +80,7 @@ export const validateResponse = (
     let carList: IDict[] = []
     let count = 0
     let stateCopy: IDict = { ...state }
+    let canProceed = true
 
     // Get filter keys
     const filters = Object.keys(state).filter(
@@ -96,9 +97,17 @@ export const validateResponse = (
     }
 
     // Format Car list models
-    carList.map((item) => {
-      // if (item)
-    })
+    const regex = new RegExp("^m[0-9]{3}[d|i$]|^x[0-9]+$")
+
+    for (let i = 0; i < carList.length; i++) {
+      if (carList[i].brand.toLowerCase().includes("bmw")) {
+        canProceed = regex.test(carList[i].model)
+
+        if (!canProceed) {
+          break
+        }
+      }
+    }
 
     // return data
     const payload = {
@@ -112,9 +121,11 @@ export const validateResponse = (
       carList,
     }
 
-    return {
-      canProceed: true,
-      payload,
-    }
+    return canProceed
+      ? {
+          canProceed,
+          payload,
+        }
+      : { error: "Please check your BMW model, they don't seem to match" }
   }
 }
