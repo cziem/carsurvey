@@ -46,8 +46,13 @@ const AdminDashboard = () => {
   return (
     <AuthLayout>
       <Wrapper>
-        <Grid container className="overview summary">
-          <Grid item className="adolescent">
+        <Grid
+          container
+          className="overview summary"
+          rowSpacing={2}
+          // columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        >
+          <Grid item className="adolescent" xl={2} lg={3} sm={5} xs={12}>
             <div className="info">
               <Typography variant="h5">Adolescent</Typography>
               <Icon className="icon">
@@ -60,7 +65,7 @@ const AdminDashboard = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item className="unlicensed">
+          <Grid item className="unlicensed" xl={3} lg={2} sm={5} xs={12}>
             <div className="info">
               <Typography variant="h5">Unlicensed</Typography>
               <Icon className="icon">
@@ -73,7 +78,7 @@ const AdminDashboard = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item className="first-timer">
+          <Grid item className="first-timer" xl={2} lg={3} sm={5} xs={12}>
             <div className="info">
               <Typography variant="h5">First Timers</Typography>
               <Icon className="icon">
@@ -86,7 +91,7 @@ const AdminDashboard = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item className="target">
+          <Grid item className="target" xl={3} lg={3} sm={5} xs={12}>
             <div className="info">
               <Typography variant="h5">Targeted</Typography>
               <Icon className="icon">
@@ -110,17 +115,17 @@ const AdminDashboard = () => {
         >
           <Container maxWidth={false}>
             <Grid container spacing={3}>
-              <Grid item xl={3} lg={3} sm={6} xs={12}>
+              <Grid item xl={4} lg={3} sm={12} xs={12} mr={4}>
                 <RespondentsGrouping />
               </Grid>
-              <Grid item xl={3} lg={3} sm={6} xs={12}>
+              <Grid item xl={4} lg={3} sm={12} xs={12} mr={4}>
                 <FuelEmission sx={{ height: "100%" }} />
               </Grid>
-              <Grid item xl={3} lg={3} sm={6} xs={12}>
-                <Drivetrain />
-              </Grid>
-              <Grid item xl={3} lg={3} sm={6} xs={12}>
+              <Grid item xl={3} lg={3} sm={12} xs={12}>
                 <AverageCarPerFamily />
+              </Grid>
+              <Grid item xl={3} lg={3} sm={12} xs={12}>
+                <Drivetrain />
               </Grid>
             </Grid>
           </Container>
