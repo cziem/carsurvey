@@ -40,3 +40,11 @@ code {
 *::-webkit-scrollbar-thumb:hover {
   background: #07131c;
 }
+
+.MuiDrawer-paper {
+  background-color: #07131c !important;
+  color: #f1f1f1 !important;
+}
+.MuiListItemIcon-root {
+  color: #f1f1f1 !important;
+}
