@@ -127,6 +127,10 @@ export const Wrapper = styled(Box)`
     width: 320px;
     margin: 0 auto;
   }
+  .chart.car-size {
+    height: 400px;
+    width: 400px;
+  }
   .legend {
     flex-wrap: wrap;
 

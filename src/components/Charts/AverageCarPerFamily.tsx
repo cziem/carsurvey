@@ -143,7 +143,7 @@ const AverageCarPerFamily = (props: IProps) => {
           className="chart-wrapper"
         >
           {!!survey.length ? (
-            <Pie className="chart" data={data} options={options} />
+            <Pie className="chart car-size" data={data} options={options} />
           ) : (
             <Box
               sx={{
