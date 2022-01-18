@@ -118,17 +118,17 @@ const AdminDashboard = () => {
           }}
         >
           <Container maxWidth={false}>
-            <Grid container spacing={3}>
-              <Grid item xl={4} lg={3} sm={12} xs={12} mr={4}>
+            <Grid container spacing={3} sx={{ justifyContent: "space-evenly" }}>
+              <Grid item xl={5} lg={5} sm={12} xs={12} mb={4}>
                 <RespondentsGrouping />
               </Grid>
-              <Grid item xl={4} lg={3} sm={12} xs={12} mr={4}>
-                <FuelEmission sx={{ height: "100%" }} />
+              <Grid item xl={5} lg={5} sm={12} xs={12} mb={4}>
+                <FuelEmission />
               </Grid>
-              <Grid item xl={3} lg={3} sm={12} xs={12}>
+              <Grid item xl={5} lg={5} sm={12} xs={12}>
                 <AverageCarPerFamily />
               </Grid>
-              <Grid item xl={3} lg={3} sm={12} xs={12}>
+              <Grid item xl={5} lg={5} sm={12} xs={12}>
                 <Drivetrain />
               </Grid>
             </Grid>

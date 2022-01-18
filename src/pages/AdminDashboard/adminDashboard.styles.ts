@@ -123,6 +123,11 @@ export const Wrapper = styled(Box)`
   }
 
   /* Styles for charts */
+  .chart {
+    height: 350px;
+    width: 350px;
+    margin: 0 auto;
+  }
   .legend {
     flex-wrap: wrap;
 

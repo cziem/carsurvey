@@ -137,12 +137,12 @@ const AverageCarPerFamily = (props: IProps) => {
       <CardContent>
         <Box
           sx={{
-            height: "auto",
+            height: "420px",
             position: "relative",
           }}
         >
           {!!survey.length ? (
-            <Pie data={data} options={options} />
+            <Pie className="chart" data={data} options={options} />
           ) : (
             <Box
               sx={{

@@ -140,16 +140,16 @@ const FuelEmission = (props: IProps) => {
       <CardContent>
         <Box
           sx={{
-            height: "auto",
+            height: "400px",
             position: "relative",
           }}
         >
           {!!survey.length ? (
-            <Pie data={data} options={options} />
+            <Pie className="chart" data={data} options={options} />
           ) : (
             <Box
               sx={{
-                height: "400px",
+                height: "350px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -170,7 +170,6 @@ const FuelEmission = (props: IProps) => {
             display: "flex",
             justifyContent: "center",
             pt: 2,
-            mt: 2,
           }}
           className="legend"
         >

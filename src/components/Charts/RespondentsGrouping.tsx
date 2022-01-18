@@ -165,16 +165,16 @@ const RespondentsGrouping = (props: IProps) => {
       <CardContent>
         <Box
           sx={{
-            height: "auto",
+            height: "400px",
             position: "relative",
           }}
         >
           {!!survey.length ? (
-            <Doughnut data={data} options={options} />
+            <Doughnut className="chart" data={data} options={options} />
           ) : (
             <Box
               sx={{
-                height: "400px",
+                height: "350px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -195,7 +195,6 @@ const RespondentsGrouping = (props: IProps) => {
             display: "flex",
             justifyContent: "center",
             pt: 2,
-            mt: 2,
           }}
           className="legend"
         >
