@@ -48,3 +48,15 @@ code {
 .MuiListItemIcon-root {
   color: #f1f1f1 !important;
 }
+
+/* Style Number input type */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

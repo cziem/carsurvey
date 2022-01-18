@@ -55,6 +55,7 @@ export const questionsList: TQuestion[] = [
   {
     number: 1,
     name: "age",
+    inputType: "number",
     type: "short-answer",
     question: "How old are you?",
   },
@@ -96,6 +97,7 @@ export const questionsList: TQuestion[] = [
   {
     number: 7,
     name: "carSize",
+    inputType: "number",
     type: "short-answer",
     question: "How many cars do you have in your family?",
   },

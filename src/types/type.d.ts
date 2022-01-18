@@ -1,4 +1,3 @@
-import { IResponse } from "./type.d"
 export type TQuestion = {
   type: "short-answer" | "multi-choice" | "checkbox" | "dropdown" | "dual"
   name: string
@@ -7,6 +6,7 @@ export type TQuestion = {
   number: number
   make?: string[]
   question: string
+  inputType?: string
   options?: string[]
 }
 

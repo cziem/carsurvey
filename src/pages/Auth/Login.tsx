@@ -67,7 +67,7 @@ const Login = () => {
                 Sign in
               </Typography>
               <Typography color="textSecondary" gutterBottom variant="body2">
-                Sign in on the internal platform
+                Sign in to the admin platform
               </Typography>
             </Box>
             <Grid container spacing={3}>

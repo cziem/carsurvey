@@ -68,7 +68,7 @@ export const validateResponse = (
       }
     } else {
       return {
-        error: "Please enter number of cars to continue",
+        error: "Please enter a number above 0 to continue",
       }
     }
   }

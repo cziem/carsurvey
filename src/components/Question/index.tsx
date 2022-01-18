@@ -38,6 +38,7 @@ const Question: React.FC<IQuestion> = ({
           className="input"
           name={question.name}
           onChange={handleChange}
+          type={question.inputType}
         />
       )
     }
