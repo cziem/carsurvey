@@ -168,6 +168,7 @@ const RespondentsGrouping = (props: IProps) => {
             height: "400px",
             position: "relative",
           }}
+          className="chart-wrapper"
         >
           {!!survey.length ? (
             <Doughnut className="chart" data={data} options={options} />

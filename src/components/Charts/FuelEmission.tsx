@@ -143,6 +143,7 @@ const FuelEmission = (props: IProps) => {
             height: "400px",
             position: "relative",
           }}
+          className="chart-wrapper"
         >
           {!!survey.length ? (
             <Pie className="chart" data={data} options={options} />

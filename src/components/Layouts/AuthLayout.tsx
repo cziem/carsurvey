@@ -19,6 +19,7 @@ import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 import * as React from "react"
 import { useNavigate } from "react-router-dom"
+import { Wrapper } from "./authLayout.styles"
 
 const drawerWidth = 240
 
@@ -114,7 +115,7 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
   }
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Wrapper>
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ bgcolor: "#07131c" }}>
         <Toolbar>
@@ -136,7 +137,12 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
           <Toolbar />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} sx={{ bgcolor: "#07131c" }}>
+      <Drawer
+        className="drawer"
+        variant="permanent"
+        open={open}
+        sx={{ bgcolor: "#07131c" }}
+      >
         <DrawerHeader sx={{ bgcolor: "#07131c" }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
@@ -163,6 +169,7 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
             <ListItemIcon>
               <Logout onClick={handleLogout} />
             </ListItemIcon>
+            <ListItemText primary="Logout" />
           </ListItem>
         </List>
       </Drawer>
@@ -171,7 +178,7 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
         <DrawerHeader />
         {children}
       </Box>
-    </Box>
+    </Wrapper>
   )
 }
 

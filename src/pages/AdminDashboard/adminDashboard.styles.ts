@@ -2,15 +2,13 @@ import { Box } from "@mui/material"
 import styled from "styled-components"
 
 export const Wrapper = styled(Box)`
-  .overview {
-    /* background: red; */
-  }
-
   .summary {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin-top: 1em;
+    margin-left: 0;
+    width: 100%;
 
     .MuiGrid-item {
       display: flex;
@@ -108,6 +106,7 @@ export const Wrapper = styled(Box)`
 
     @media (max-width: 600px) {
       flex-direction: column;
+      margin-left: 0;
 
       .MuiGrid-item {
         display: flex;
@@ -124,8 +123,8 @@ export const Wrapper = styled(Box)`
 
   /* Styles for charts */
   .chart {
-    height: 350px;
-    width: 350px;
+    height: 320px;
+    width: 320px;
     margin: 0 auto;
   }
   .legend {
@@ -135,8 +134,54 @@ export const Wrapper = styled(Box)`
       font-size: 1.5em;
     }
   }
+
   @media (max-width: 600px) {
+    .chart-wrapper {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chart {
+      height: 250px;
+      width: 250px;
+      margin: 0 auto;
+    }
+
     .legend {
+      justify-content: space-around;
+    }
+  }
+
+  @media (min-width: 601px) and (max-width: 1027px) {
+    .summary {
+      margin-left: 0;
+
+      .MuiGrid-item {
+        flex-direction: column;
+        padding: 1em 0;
+
+        h2 {
+          font-size: 4em;
+        }
+      }
+    }
+    .chart-wrapper {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chart {
+      height: 250px;
+      width: 250px;
+      margin: 0 auto;
+    }
+
+    .legend {
+      justify-content: space-around;
     }
   }
 `
