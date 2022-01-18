@@ -88,7 +88,7 @@ export const validateResponse = (
     )
 
     // Format CarList
-    while (count <= +state.carSize) {
+    while (count < filters.length) {
       carList.push({
         brand: stateCopy[filters[count]],
         model: stateCopy[filters[count + 1]],

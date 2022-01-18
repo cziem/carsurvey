@@ -91,7 +91,7 @@ const FuelEmission = (props: IProps) => {
         hoverBorderColor: "#e6e6e6",
       },
     ],
-    labels: ["Targeted", "Care about emission"],
+    labels: ["Care about emission", "Don't care about emission"],
   }
 
   const options = {
