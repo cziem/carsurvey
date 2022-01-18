@@ -56,10 +56,10 @@ const Login = () => {
       >
         <Container maxWidth="sm">
           <Button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/survey")}
             startIcon={<ArrowBackIcon fontSize="small" />}
           >
-            Home
+            Try Survey
           </Button>
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>

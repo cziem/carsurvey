@@ -158,7 +158,26 @@ const Drivetrain = (props: IProps) => {
             position: "relative",
           }}
         >
-          <Doughnut data={data} options={options} />
+          {!!survey.length ? (
+            <Doughnut data={data} options={options} />
+          ) : (
+            <Box
+              sx={{
+                height: "400px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Typography
+                component="p"
+                textAlign="center"
+                sx={{ color: "#999" }}
+              >
+                No available data
+              </Typography>
+            </Box>
+          )}
         </Box>
         <Box
           sx={{

@@ -110,7 +110,7 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("car-survey-auth")
-    navigate("/", { replace: true })
+    navigate("/login", { replace: true })
   }
 
   return (
