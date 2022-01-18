@@ -24,7 +24,7 @@ const ImageBackground = () => {
       ++count
     }
 
-    const intervalId = setInterval(updateImage, 8000)
+    const intervalId = setInterval(updateImage, 5000)
 
     return () => clearInterval(intervalId)
   }, [])

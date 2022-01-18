@@ -2,6 +2,8 @@
 
 Head to `/login` to view the admin dashboard. To see the auto update feature, open multiple windows and be sure to stay logged in on one of the windows while submitting the surveys
 
+Open [carsurvey](https://carsurvey.vercel.app/) to view the live version.
+
 ## Available Scripts
 
 In the project directory, you can run:
