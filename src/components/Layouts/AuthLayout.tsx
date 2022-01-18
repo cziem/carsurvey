@@ -17,6 +17,7 @@ import ListItemText from "@mui/material/ListItemText"
 import { CSSObject, styled, Theme, useTheme } from "@mui/material/styles"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
+import clsx from "clsx"
 import * as React from "react"
 import { useNavigate } from "react-router-dom"
 import { Wrapper } from "./authLayout.styles"
@@ -138,7 +139,7 @@ const AuthLayout: React.FC<IProps> = ({ children }) => {
         </Toolbar>
       </AppBar>
       <Drawer
-        className="drawer"
+        className={clsx([open ? "open-drawer" : "drawer"])}
         variant="permanent"
         open={open}
         sx={{ bgcolor: "#07131c" }}
