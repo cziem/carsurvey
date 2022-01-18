@@ -19,19 +19,6 @@ export const Wrapper = styled(Box)`
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .fade {
-    animation: fade 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
-  }
-
-  @keyframes fade {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
+    transition: all 0.5s ease-in;
   }
 `

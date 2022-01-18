@@ -7,26 +7,32 @@ import Car4 from "../../assets/cars/car-4.jpg"
 import Car5 from "../../assets/cars/car-5.jpg"
 
 const ImageBackground = () => {
+  const images = [Car1, Car2, Car3, Car4, Car5]
+  const slideImage = React.useRef<HTMLImageElement | null>(null)
+  let count = 0
+
+  const updateImage = () => {
+    if (count === images.length) {
+      count = 0
+    }
+
+    if (slideImage.current) {
+      slideImage.current.src = images[count]
+    }
+
+    count++
+  }
+
+  React.useEffect(() => {
+    const intervalId = setInterval(updateImage, 8000)
+
+    return () => clearInterval(intervalId)
+  }, [])
+
   return (
     <Wrapper>
       <div className="overlay" />
-      <img src={Car1} alt="car bg" />
-
-      {/* <div className="fade slide">
-        <img src={Car1} alt="car bg" />
-      </div>
-      <div className="fade slide">
-        <img src={Car2} alt="car bg" />
-      </div>
-      <div className="fade slide">
-        <img src={Car3} alt="car bg" />
-      </div>
-      <div className="fade slide">
-        <img src={Car4} alt="car bg" />
-      </div>
-      <div className="fade slide">
-        <img src={Car5} alt="car bg" />
-      </div> */}
+      <img ref={slideImage} src={Car1} alt="car bg" />
     </Wrapper>
   )
 }
