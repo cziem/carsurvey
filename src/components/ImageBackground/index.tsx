@@ -7,24 +7,24 @@ import Car4 from "../../assets/cars/car-4.jpg"
 import Car5 from "../../assets/cars/car-5.jpg"
 
 const ImageBackground = () => {
-  const images = [Car1, Car2, Car3, Car4, Car5]
   const slideImage = React.useRef<HTMLImageElement | null>(null)
-  let count = 0
-
-  const updateImage = () => {
-    if (count === images.length) {
-      count = 0
-    }
-
-    if (slideImage.current) {
-      slideImage.current.src = images[count]
-    }
-
-    count++
-  }
 
   React.useEffect(() => {
-    const intervalId = setInterval(updateImage, 8000)
+    const images = [Car1, Car2, Car3, Car4, Car5]
+    let count = 0
+    const updateImage = () => {
+      if (count === images.length) {
+        count = 0
+      }
+
+      if (slideImage.current) {
+        slideImage.current.src = images[count]
+      }
+
+      ++count
+    }
+
+    const intervalId = setInterval(updateImage, 2000)
 
     return () => clearInterval(intervalId)
   }, [])
