@@ -1,10 +1,10 @@
 import React from "react"
 import { Wrapper } from "./imageBackground.styles"
-import Car1 from "../../assets/cars/car-1.jpg"
-import Car2 from "../../assets/cars/car-2.jpg"
-import Car3 from "../../assets/cars/car-3.jpg"
-import Car4 from "../../assets/cars/car-4.jpg"
-import Car5 from "../../assets/cars/car-5.jpg"
+import Car1 from "../../assets/cars/car-1.webp"
+import Car2 from "../../assets/cars/car-2.webp"
+import Car3 from "../../assets/cars/car-3.webp"
+import Car4 from "../../assets/cars/car-4.webp"
+import Car5 from "../../assets/cars/car-5.webp"
 
 const ImageBackground = () => {
   const slideImage = React.useRef<HTMLImageElement | null>(null)

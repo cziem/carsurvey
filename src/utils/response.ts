@@ -7,7 +7,7 @@ export const validateResponse = (
   if (name === "age") {
     if (!!state.age && Number(state.age)) {
       return {
-        canProceed: Number(state.age) >= 18,
+        canProceed: Number(state.age) >= 18 && Number(state.age) <= 100,
         hasBonus: Number(state.age) >= 18 && Number(state.age) <= 25,
       }
     } else {
