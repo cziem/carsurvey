@@ -1,4 +1,4 @@
-import { Button, Container, Typography, TextField, Slide } from "@mui/material"
+import { Button, Container, Typography, Slide } from "@mui/material"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import ImageBackground from "../../components/ImageBackground"
@@ -6,7 +6,7 @@ import { Wrapper } from "./home.styles"
 
 const Home = () => {
   const navigate = useNavigate()
-  const [checked, setChecked] = React.useState(true)
+  const [checked] = React.useState(true)
   const containerRef = React.useRef(null)
 
   return (
