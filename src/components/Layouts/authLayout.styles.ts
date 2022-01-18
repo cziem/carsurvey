@@ -12,6 +12,16 @@ export const Wrapper = styled(Box)`
 
     .open-drawer {
       display: block;
+      position: fixed;
+      z-index: 100;
+
+      ::after {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #0000008a;
+      }
     }
 
     main {
